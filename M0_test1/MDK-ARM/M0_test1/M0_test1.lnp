@@ -1,0 +1,25 @@
+--cpu Cortex-M0
+"m0_test1\startup_stm32f072xb.o"
+"m0_test1\main.o"
+"m0_test1\stm32f0xx_it.o"
+"m0_test1\stm32f0xx_hal_msp.o"
+"m0_test1\stm32f0xx_hal_uart.o"
+"m0_test1\stm32f0xx_hal_uart_ex.o"
+"m0_test1\stm32f0xx_hal_rcc.o"
+"m0_test1\stm32f0xx_hal_rcc_ex.o"
+"m0_test1\stm32f0xx_hal.o"
+"m0_test1\stm32f0xx_hal_i2c.o"
+"m0_test1\stm32f0xx_hal_i2c_ex.o"
+"m0_test1\stm32f0xx_hal_gpio.o"
+"m0_test1\stm32f0xx_hal_dma.o"
+"m0_test1\stm32f0xx_hal_cortex.o"
+"m0_test1\stm32f0xx_hal_pwr.o"
+"m0_test1\stm32f0xx_hal_pwr_ex.o"
+"m0_test1\stm32f0xx_hal_flash.o"
+"m0_test1\stm32f0xx_hal_flash_ex.o"
+"m0_test1\stm32f0xx_hal_exti.o"
+"m0_test1\system_stm32f0xx.o"
+--library_type=microlib --strict --scatter "M0_test1\M0_test1.sct"
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list "M0_test1.map" -o M0_test1\M0_test1.axf
