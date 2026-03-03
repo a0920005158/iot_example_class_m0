@@ -54,6 +54,7 @@ void setup() {
   server.on("/switch",handleSwitch);
   server.on("/home",handleHome);
   server.on("/home/led",handleHomeLed);
+  server.on("/home/login",handleLogin);
 
   server.begin();
   Serial.println("Http server start");
@@ -62,6 +63,25 @@ void setup() {
 void loop() {
   // put your main code here, to run repeatedly:
   server.handleClient();
+}
+
+void handleLogin(void){
+  Serial.println("Login control");
+  if(server.method() == HTTP_POST){
+    if(server.hasArg("username")){
+      String username = server.arg("username");
+      String password = server.arg("password");
+      Serial.println(username);
+      Serial.println(password);
+      if(username == "admin" && password == "123456"){
+        server.send(200,"text/html","OK");
+      } else {
+        server.send(200,"text/html","ERROR");
+      }
+    }
+  } else {
+    server.send(200,"text/html","Login fail");
+  }
 }
 
 void handleHome(void){
