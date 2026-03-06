@@ -1,3 +1,7 @@
+#include <AM2302-Sensor.h>
+
+AM2302::AM2302_Sensor am2302(4);
+
 #include <ESP8266WiFi.h>
 #include <WiFiClient.h>
 
@@ -16,13 +20,15 @@ char sendData_write[] = "GET /update?api_key=26QSDSHKGWGWMXX4&field1=25&field2=6
 char sendData_1[] = "Host:api.thingspeak.com \r\n";
 char sendData_2[] = "Connection: close\r\n\r\n";
 
-#include <DHT.h>
+//#include <DHT.h>
+
 #include <Ticker.h>
 
-#define DHTPin D2
-#define DHTType DHT11
+//#define DHTPin D2
+//#define DHTType DHT11
 
-DHT dht(DHTPin, DHTType);
+//DHT dht(DHTPin, DHTType);
+
 Ticker timer;
 volatile bool readFlag = false;
 
@@ -58,14 +64,21 @@ void loop() {
   // put your main code here, to run repeatedly:
   if(readFlag){
     readFlag = false;
-    float t = dht.readTemperature();
-    float h = dht.readHumidity();
-    if(isnan(h) || isnan(t)){
-      Serial.println("read failed");
-      return; 
+//    float t = dht.readTemperature();
+//    float h = dht.readHumidity();
+    int status = am2302.read();
+    if(status == 0){
+      float t = am2302.get_Temperature();
+      float h = am2302.get_Humidity();
+
+      if(isnan(h) || isnan(t)){
+        Serial.println("read failed");
+        return; 
+      }
+      Serial.println(t);
+      Serial.println(h);
+      Serial.println(); 
     }
-    Serial.println(t);
-    Serial.println(h);  
   }
 }
 
