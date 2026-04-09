@@ -1,4 +1,4 @@
-m0_test/main.o: ..\Core\Src\main.c ..\Core\Inc\main.h \
+m0_test/led_control.o: ..\Core\Src\led_control.c ..\Core\Inc\main.h \
   ..\Drivers\STM32F0xx_HAL_Driver\Inc\stm32f0xx_hal.h \
   ..\Core\Inc\stm32f0xx_hal_conf.h \
   ..\Drivers\STM32F0xx_HAL_Driver\Inc\stm32f0xx_hal_rcc.h \
@@ -22,5 +22,4 @@ m0_test/main.o: ..\Core\Src\main.c ..\Core\Inc\main.h \
   ..\Drivers\STM32F0xx_HAL_Driver\Inc\stm32f0xx_hal_pwr.h \
   ..\Drivers\STM32F0xx_HAL_Driver\Inc\stm32f0xx_hal_pwr_ex.h \
   ..\Drivers\STM32F0xx_HAL_Driver\Inc\stm32f0xx_hal_uart.h \
-  ..\Drivers\STM32F0xx_HAL_Driver\Inc\stm32f0xx_hal_uart_ex.h \
-  ..\Core\Src\math_fun.h ..\Core\Src\led_control.h
+  ..\Drivers\STM32F0xx_HAL_Driver\Inc\stm32f0xx_hal_uart_ex.h
