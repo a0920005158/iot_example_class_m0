@@ -1,5 +1,6 @@
 
 #include "main.h"
+#include <stdio.h>
 
 #define All_ledOn  1
 #define All_ledOff 2
@@ -7,6 +8,19 @@
 #define Even_ledOn 4
 #define Bit_ledOn  5
 #define Bit_oneOn  6
+
+void color_change(uint32_t color)
+{
+	uint32_t value;
+	
+	value = color;
+	if(value <= 7){
+		GPIOA->ODR &= (~0x7ul<<6);
+		GPIOA->ODR |= value<<6;
+	} else {
+		printf("color value is error\n\r");
+	}
+}
 
 void led_change(int mode)
 {

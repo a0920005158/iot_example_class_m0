@@ -411,6 +411,16 @@
               <FilePath>..\Core\Src\math_fun.h</FilePath>
             </File>
             <File>
+              <FileName>led_control.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\led_control.c</FilePath>
+            </File>
+            <File>
+              <FileName>led_control.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Core\Src\led_control.h</FilePath>
+            </File>
+            <File>
               <FileName>main.c</FileName>
               <FileType>1</FileType>
               <FilePath>../Core/Src/main.c</FilePath>
@@ -424,16 +434,6 @@
               <FileName>stm32f0xx_hal_msp.c</FileName>
               <FileType>1</FileType>
               <FilePath>../Core/Src/stm32f0xx_hal_msp.c</FilePath>
-            </File>
-            <File>
-              <FileName>led_control.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Core\Src\led_control.c</FilePath>
-            </File>
-            <File>
-              <FileName>led_control.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\Core\Src\led_control.h</FilePath>
             </File>
           </Files>
         </Group>
