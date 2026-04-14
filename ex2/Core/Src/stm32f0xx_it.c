@@ -23,6 +23,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include <stdio.h>
+#include "pwm_control.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -151,6 +152,14 @@ void EXTI0_1_IRQHandler(void)
 		HAL_Delay(50);
 		if((GPIOA->IDR & (0x1ul)) == 0) {
 			printf("PC.0 sensor\n\r");
+			enablePWM_ch3_servo();
+			for(int i=5; i<15; i++){
+				pwmLevel_ch3_servo(i);
+				HAL_Delay(100);
+			}
+			pwmLevel_ch3_servo(5);
+			HAL_Delay(5000);
+			disablePWM_ch3_servo();
 		}
 		EXTI->PR |= 0x1ul;
 	}

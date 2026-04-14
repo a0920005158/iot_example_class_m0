@@ -18,11 +18,10 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-#include "pwd_control.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "pwm_control.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -96,14 +95,14 @@ int main(void)
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
 
-	enablePWM_ch3_servo();
-	for(int i=5; i<25; i++){
-		pwmLevel_ch3_servo(i);
-		HAL_Delay(100);
-	}
-	pwmLevel_ch3_servo(5);
-	HAL_Delay(1000);
-	disablePWM_ch3_servo();
+	//enablePWM_ch3_servo();
+	//for(int i=5; i<25; i++){
+		//pwmLevel_ch3_servo(i);
+		//HAL_Delay(100);
+	//}
+	//pwmLevel_ch3_servo(5);
+	//HAL_Delay(1000);
+	//disablePWM_ch3_servo();
 	
   /* USER CODE END 2 */
 
