@@ -157,8 +157,9 @@ void EXTI0_1_IRQHandler(void)
 				pwmLevel_ch3_servo(i);
 				HAL_Delay(100);
 			}
-			pwmLevel_ch3_servo(5);
 			HAL_Delay(5000);
+			pwmLevel_ch3_servo(5);
+			HAL_Delay(1000);
 			disablePWM_ch3_servo();
 		}
 		EXTI->PR |= 0x1ul;

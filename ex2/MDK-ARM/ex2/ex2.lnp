@@ -1,10 +1,10 @@
 --cpu Cortex-M0
 "ex2\startup_stm32f072xb.o"
 "ex2\pwm_control.o"
+"ex2\usart_cubemx_2024.o"
 "ex2\main.o"
 "ex2\stm32f0xx_it.o"
 "ex2\stm32f0xx_hal_msp.o"
-"ex2\usart_cubemx_2024.o"
 "ex2\stm32f0xx_hal_tim.o"
 "ex2\stm32f0xx_hal_tim_ex.o"
 "ex2\stm32f0xx_hal_rcc.o"

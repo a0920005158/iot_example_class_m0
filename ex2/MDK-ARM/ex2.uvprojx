@@ -401,6 +401,16 @@
               <FilePath>..\Core\Src\pwm_control.c</FilePath>
             </File>
             <File>
+              <FileName>usart_cubemx_2024.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>C:\Users\a0920\OneDrive\Desktop\usart_cubemx_2024.c</FilePath>
+            </File>
+            <File>
+              <FileName>pwm_control.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Core\Src\pwm_control.h</FilePath>
+            </File>
+            <File>
               <FileName>main.c</FileName>
               <FileType>1</FileType>
               <FilePath>../Core/Src/main.c</FilePath>
@@ -414,16 +424,6 @@
               <FileName>stm32f0xx_hal_msp.c</FileName>
               <FileType>1</FileType>
               <FilePath>../Core/Src/stm32f0xx_hal_msp.c</FilePath>
-            </File>
-            <File>
-              <FileName>usart_cubemx_2024.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>C:\Users\a0920\OneDrive\Desktop\usart_cubemx_2024.c</FilePath>
-            </File>
-            <File>
-              <FileName>pwm_control.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\Core\Src\pwm_control.h</FilePath>
             </File>
           </Files>
         </Group>
