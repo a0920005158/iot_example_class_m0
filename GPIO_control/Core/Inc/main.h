@@ -49,6 +49,8 @@ extern "C" {
 
 /* USER CODE END EM */
 
+void HAL_TIM_MspPostInit(TIM_HandleTypeDef *htim);
+
 /* Exported functions prototypes ---------------------------------------------*/
 void Error_Handler(void);
 
@@ -80,6 +82,9 @@ void Error_Handler(void);
 #define USART_RX_GPIO_Port GPIOA
 #define LD2_Pin GPIO_PIN_5
 #define LD2_GPIO_Port GPIOA
+#define body_sensor_Pin GPIO_PIN_4
+#define body_sensor_GPIO_Port GPIOC
+#define body_sensor_EXTI_IRQn EXTI4_15_IRQn
 #define key_4_Pin GPIO_PIN_5
 #define key_4_GPIO_Port GPIOC
 #define key_4_EXTI_IRQn EXTI4_15_IRQn
@@ -89,6 +94,10 @@ void Error_Handler(void);
 #define sensor_2_Pin GPIO_PIN_6
 #define sensor_2_GPIO_Port GPIOC
 #define sensor_2_EXTI_IRQn EXTI4_15_IRQn
+#define led_timer6_Pin GPIO_PIN_8
+#define led_timer6_GPIO_Port GPIOC
+#define led_timer7_Pin GPIO_PIN_9
+#define led_timer7_GPIO_Port GPIOC
 #define TMS_Pin GPIO_PIN_13
 #define TMS_GPIO_Port GPIOA
 #define TCK_Pin GPIO_PIN_14

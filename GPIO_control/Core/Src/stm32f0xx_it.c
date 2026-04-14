@@ -48,6 +48,13 @@ volatile bool flag_relay1 = false;
 volatile bool flag_relay2 = false;
 volatile bool flag_relay3 = false;
 volatile bool flag_relay4 = false;
+
+volatile uint32_t timer6_tick;
+volatile uint32_t timer7_tick;
+
+volatile uint32_t sensor1_counter;
+volatile bool sensor1_flag=false;
+volatile uint32_t body_counter;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -61,7 +68,8 @@ volatile bool flag_relay4 = false;
 /* USER CODE END 0 */
 
 /* External variables --------------------------------------------------------*/
-
+extern TIM_HandleTypeDef htim6;
+extern TIM_HandleTypeDef htim7;
 /* USER CODE BEGIN EV */
 
 /* USER CODE END EV */
@@ -193,6 +201,9 @@ void EXTI2_3_IRQHandler(void)
 	if( EXTI->PR & (0x1ul<<2) ){
 		HAL_Delay(50);
 		if( (GPIOB->IDR & (0x1ul<<2)) == 0){
+			sensor1_counter = timer7_tick;
+			sensor1_flag = true;
+			GPIOC->ODR |= 0x1ul<<9;
 			printf("PB.2 sensor 1 int \n\r");
 		}
 		EXTI->PR |= 0x1ul<<2;
@@ -223,6 +234,21 @@ void EXTI2_3_IRQHandler(void)
 void EXTI4_15_IRQHandler(void)
 {
   /* USER CODE BEGIN EXTI4_15_IRQn 0 */
+	if(EXTI->PR & (0x1ul<<4)) {
+		HAL_Delay(10);
+		if( GPIOC->IDR & (0x1ul<<4) ){
+			printf("PC.4 body sensor start\n\r");
+			GPIOC->ODR |= 0x1ul<<8;
+			body_counter = timer7_tick;
+		} else if((GPIOC->IDR & (0x1ul<<4)) == 0){
+			GPIOC->ODR &= ~(0x1ul<<8);
+			float time = (timer7_tick - body_counter) *0.1;
+			printf("PC.4 body sensor end time = %f\n\r",time);
+		}
+		
+		EXTI->PR |= 0x1ul <<4;
+	}
+	
 	if( EXTI->PR & (0x1ul<<6) ){
 		HAL_Delay(50);
 		if((GPIOC->IDR & (0x1ul<<6)) == 0) {
@@ -247,6 +273,41 @@ void EXTI4_15_IRQHandler(void)
   /* USER CODE BEGIN EXTI4_15_IRQn 1 */
 
   /* USER CODE END EXTI4_15_IRQn 1 */
+}
+
+/**
+  * @brief This function handles TIM6 global and DAC channel underrun error interrupts.
+  */
+void TIM6_DAC_IRQHandler(void)
+{
+  /* USER CODE BEGIN TIM6_DAC_IRQn 0 */
+	timer6_tick++;
+	TIM6->SR &= ~0x1ul;
+  /* USER CODE END TIM6_DAC_IRQn 0 */
+  /* USER CODE BEGIN TIM6_DAC_IRQn 1 */
+
+  /* USER CODE END TIM6_DAC_IRQn 1 */
+}
+
+/**
+  * @brief This function handles TIM7 global interrupt.
+  */
+void TIM7_IRQHandler(void)
+{
+  /* USER CODE BEGIN TIM7_IRQn 0 */
+	timer7_tick++;
+	if(sensor1_flag && (timer7_tick - sensor1_counter) >=50){
+		GPIOC->ODR &= ~(0x1ul<<9);
+		sensor1_flag = false;
+		printf("sensor 1 led off \n\r");
+	}
+//	printf("timer 7\n\r");
+	TIM7->SR &= ~0x1ul;
+
+  /* USER CODE END TIM7_IRQn 0 */
+  /* USER CODE BEGIN TIM7_IRQn 1 */
+
+  /* USER CODE END TIM7_IRQn 1 */
 }
 
 /* USER CODE BEGIN 1 */
