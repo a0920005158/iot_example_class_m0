@@ -61,12 +61,22 @@ void Error_Handler(void);
 /* Private defines -----------------------------------------------------------*/
 #define B1_Pin GPIO_PIN_13
 #define B1_GPIO_Port GPIOC
+#define B1_EXTI_IRQn EXTI4_15_IRQn
+#define key_1_Pin GPIO_PIN_0
+#define key_1_GPIO_Port GPIOA
+#define key_1_EXTI_IRQn EXTI0_1_IRQn
+#define key_2_Pin GPIO_PIN_1
+#define key_2_GPIO_Port GPIOA
+#define key_2_EXTI_IRQn EXTI0_1_IRQn
 #define USART_TX_Pin GPIO_PIN_2
 #define USART_TX_GPIO_Port GPIOA
 #define USART_RX_Pin GPIO_PIN_3
 #define USART_RX_GPIO_Port GPIOA
 #define LD2_Pin GPIO_PIN_5
 #define LD2_GPIO_Port GPIOA
+#define key_4_Pin GPIO_PIN_5
+#define key_4_GPIO_Port GPIOC
+#define key_4_EXTI_IRQn EXTI4_15_IRQn
 #define DHT11_Pin GPIO_PIN_11
 #define DHT11_GPIO_Port GPIOA
 #define DHT22_Pin GPIO_PIN_12
@@ -75,6 +85,9 @@ void Error_Handler(void);
 #define TMS_GPIO_Port GPIOA
 #define TCK_Pin GPIO_PIN_14
 #define TCK_GPIO_Port GPIOA
+#define key_3_Pin GPIO_PIN_3
+#define key_3_GPIO_Port GPIOB
+#define key_3_EXTI_IRQn EXTI2_3_IRQn
 
 /* USER CODE BEGIN Private defines */
 

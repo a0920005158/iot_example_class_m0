@@ -2,9 +2,33 @@
 #include "main.h"
 #include <stdio.h>
 #include "timer_control.h"
+#include "melody_control.h"
 
 //Basic tone
 uint8_t note_basic[]={1,2,3,4,5,6,7,1+7,2+7,3+7,4+7,5+7,6+7,7+7,1+14,2+14,3+14,4+14,5+14,6+14,7+14}; 
+
+// Little Star Song	
+const uint8_t note_little_star[]={1,1,5,5,6,6,5,4,4,3,3,2,2,1,5,5,4,4,3,3,2,5,5,4,4,3,3,2,1,1,5,5,6,6,5,4,4,3,3,2,2,1};
+		
+const uint16_t beat_little_star[]={500,500,500,500,500,500,1000,500,500,500,500,500,500,1000,500,500,500,500,500,500,
+	1000,500,500,500,500,500,500,1000,500,500,500,500,500,500,1000,500,500,500,500,500,500,1000};
+	
+	
+//Little Bee Song	
+const uint8_t  note_little_bee[]={5,3,3,4,2,2,1,2,3,4,5,5,5,5,3,3,4,2,2,1,3,5,5,3,
+		                          2,2,2,2,2,3,4,3,3,3,3,3,4,5,5,3,3,4,2,2,1,3,5,5,1};	
+		
+const uint16_t beat_little_bee[]={250,250,500,250,250,500,250,250,250,250,250,250,500,250,250,500,250,250,500,250,250,250,250,1000,
+	250,250,250,250,250,250,500,250,250,250,250,250,250,500,250,250,500,250,250,500,250,250,250,250,1000};
+	
+// Happy Birthday Song
+const uint8_t note_happy_song[]={5,5,6,5,1+7,7,0,5,5,6,5,2+7,1+7,5,5,5+7,3+7,1+7,7,6,0,4+7,4+7,3+7,1+7,2+7,1+7};
+
+const uint16_t beat_happy_song[]={250,250,500,500,500,500,500,250,250,500,500,500,1000,
+                            250,250,500,500,500,500,1500,500,250,250,500,500,500,1000};
+
+
+
 
 void disable_buzzer(void)
 {
@@ -30,14 +54,6 @@ void select_tone(uint32_t tone_num)
 		TIM14->CNT = 0;
 		TIM14->CCR1 = arr_value * 0.8;
 }
-#define Song_1 1
-#define Song_2 2
-#define Song_3 3
-#define Song_4 4
-#define Song_5 5
-#define Song_6 6
-#define Song_7 7
-#define Song_off 0
 
 void playMelody(uint8_t song_num)
 {
@@ -46,15 +62,60 @@ void playMelody(uint8_t song_num)
 	
 	switch(song_num){
 		case Song_1:
-			
+			printf("play listle star\n\r");
+			enable_buzz();
+			for(int i=0;i<sizeof(note_little_star);i++){
+				toneValue = note_little_star[i];
+				toneValue+=7;
+				select_tone(toneValue);
+				beatValue = beat_little_star[i];
+				Delay_timer6(beatValue);
+				disable_buzzer();
+				Delay_timer6(soundStop);
+				if(song_number!=Song_1)
+					break;
+				enable_buzz();
+			}
 			break;
 		
 		case Song_2:
+			printf("play little bee\n\r");
+			for(int i=0;i<sizeof(note_little_bee);i++){
+				toneValue = note_little_bee[i];
+				toneValue+=7;
+				select_tone(toneValue);
+				beatValue = beat_little_bee[i];
+				Delay_timer6(beatValue);
+				disable_buzzer();
+				Delay_timer6(soundStop);
+				if(song_number!=Song_2)
+					break;
+				enable_buzz();
+			}
 			
 			break;
 		
 		case Song_3:
-			
+			printf("play happy song\n\r");
+			enable_buzz();
+			for(int i=0; i<sizeof(note_happy_song);i++){
+				toneValue = note_happy_song[i];
+				beatValue = beat_happy_song[i];
+				if(toneValue==0){
+					disable_buzzer();
+					Delay_timer6(beatValue);
+					enable_buzz();
+				}else{
+					select_tone(toneValue);
+					Delay_timer6(beatValue);
+					disable_buzzer();
+					Delay_timer6(soundStop);
+					if(song_number!=Song_3)
+						break;
+					enable_buzz();
+				}
+			}
+		
 			break;
 		
 		case Song_4:

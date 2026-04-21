@@ -11,3 +11,4 @@
 #define Song_off 0
 
 void playMelody(uint8_t song_num);
+extern volatile uint8_t song_number;

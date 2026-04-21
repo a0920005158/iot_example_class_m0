@@ -411,21 +411,6 @@
               <FilePath>..\Core\Src\dht_control.h</FilePath>
             </File>
             <File>
-              <FileName>main.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../Core/Src/main.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f0xx_it.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../Core/Src/stm32f0xx_it.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f0xx_hal_msp.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../Core/Src/stm32f0xx_hal_msp.c</FilePath>
-            </File>
-            <File>
               <FileName>melody_control.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Core\Src\melody_control.c</FilePath>
@@ -444,6 +429,21 @@
               <FileName>melody_control.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\Core\Src\melody_control.h</FilePath>
+            </File>
+            <File>
+              <FileName>main.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../Core/Src/main.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f0xx_it.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../Core/Src/stm32f0xx_it.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f0xx_hal_msp.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../Core/Src/stm32f0xx_hal_msp.c</FilePath>
             </File>
           </Files>
         </Group>

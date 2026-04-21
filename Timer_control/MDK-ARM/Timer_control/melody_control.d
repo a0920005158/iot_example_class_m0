@@ -25,4 +25,4 @@ timer_control/melody_control.o: ..\Core\Src\melody_control.c \
   ..\Drivers\STM32F0xx_HAL_Driver\Inc\stm32f0xx_hal_tim_ex.h \
   ..\Drivers\STM32F0xx_HAL_Driver\Inc\stm32f0xx_hal_uart.h \
   ..\Drivers\STM32F0xx_HAL_Driver\Inc\stm32f0xx_hal_uart_ex.h \
-  ..\Core\Src\timer_control.h
+  ..\Core\Src\timer_control.h ..\Core\Src\melody_control.h

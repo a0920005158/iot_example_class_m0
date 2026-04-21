@@ -24,6 +24,7 @@
 /* USER CODE BEGIN Includes */
 #include "dht_control.h"
 #include <stdio.h>
+#include "melody_control.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -48,6 +49,7 @@ volatile uint32_t tim7_tick;
 volatile uint8_t count_10sec=0;
 volatile uint32_t timer6_tick;
 volatile uint32_t timer7_tick;
+volatile uint8_t song_number = Song_off;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -146,6 +148,65 @@ void SysTick_Handler(void)
 /* For the available peripheral interrupt handler names,                      */
 /* please refer to the startup file (startup_stm32f0xx.s).                    */
 /******************************************************************************/
+
+/**
+  * @brief This function handles EXTI line 0 and 1 interrupts.
+  */
+void EXTI0_1_IRQHandler(void)
+{
+  /* USER CODE BEGIN EXTI0_1_IRQn 0 */
+	uint32_t pr_value;
+	pr_value = EXTI->PR;
+	if ( (pr_value & 0x1ul) ) {
+		printf("Pa.0 int \n\r");
+		EXTI->PR |= 0x1ul;
+		song_number = Song_1;
+	} else {
+		if ( (pr_value & (0x1ul << 1)) ) {
+			printf("PA.1 int\n\r");
+			song_number = Song_2;
+			EXTI->PR |= (0x1ul<<1);
+		}
+	}
+  /* USER CODE END EXTI0_1_IRQn 0 */
+  /* USER CODE BEGIN EXTI0_1_IRQn 1 */
+
+  /* USER CODE END EXTI0_1_IRQn 1 */
+}
+
+/**
+  * @brief This function handles EXTI line 2 and 3 interrupts.
+  */
+void EXTI2_3_IRQHandler(void)
+{
+  /* USER CODE BEGIN EXTI2_3_IRQn 0 */
+	if( EXTI->PR & (0x1ul<<3) ){
+		printf("PB.3 int \n\r");
+		song_number = Song_3;
+		EXTI->PR |= 0x1ul<<3;
+	}
+  /* USER CODE END EXTI2_3_IRQn 0 */
+  /* USER CODE BEGIN EXTI2_3_IRQn 1 */
+
+  /* USER CODE END EXTI2_3_IRQn 1 */
+}
+
+/**
+  * @brief This function handles EXTI line 4 to 15 interrupts.
+  */
+void EXTI4_15_IRQHandler(void)
+{
+  /* USER CODE BEGIN EXTI4_15_IRQn 0 */
+	if(EXTI->PR & (0x1ul<<5)) {
+		printf("PC.5 int \n\r");
+		song_number = Song_off;
+		EXTI->PR |= 0x1ul <<5;
+	}
+  /* USER CODE END EXTI4_15_IRQn 0 */
+  /* USER CODE BEGIN EXTI4_15_IRQn 1 */
+
+  /* USER CODE END EXTI4_15_IRQn 1 */
+}
 
 /**
   * @brief This function handles TIM6 global and DAC channel underrun error interrupts.
