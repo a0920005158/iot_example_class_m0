@@ -25,6 +25,7 @@
 #include "dht_control.h"
 #include <stdio.h>
 #include "melody_control.h"
+#include "bluetooth.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -65,6 +66,7 @@ volatile uint8_t song_number = Song_off;
 /* External variables --------------------------------------------------------*/
 extern TIM_HandleTypeDef htim6;
 extern TIM_HandleTypeDef htim7;
+extern UART_HandleTypeDef huart1;
 /* USER CODE BEGIN EV */
 
 /* USER CODE END EV */
@@ -244,6 +246,85 @@ void TIM7_IRQHandler(void)
   /* USER CODE BEGIN TIM7_IRQn 1 */
 
   /* USER CODE END TIM7_IRQn 1 */
+}
+
+/**
+  * @brief This function handles USART1 global interrupt / USART1 wake-up interrupt through EXTI line 25.
+  */
+void USART1_IRQHandler(void)
+{
+  /* USER CODE BEGIN USART1_IRQn 0 */
+	uint8_t rxData;
+	
+	if(USART1->ISR & (0x1ul<<5)){
+		rxData = USART1->RDR;
+		printf("bt cmd = %c \n\r",rxData);
+		switch(rxData) {
+			case Song_1_cmd:
+				song_number=Song_1;
+				break;
+			case Song_2_cmd:
+				song_number=Song_2;
+				break;
+			case Song_3_cmd:
+				song_number=Song_3;
+				break;
+			case Song_4_cmd:
+				song_number=Song_4;
+				break;
+			case Song_5_cmd:
+				song_number=Song_5;
+				break;
+			case Song_6_cmd:
+				song_number=Song_6;
+				break;
+			case Song_7_cmd:
+				song_number=Song_7;
+				break;
+			case Song_off_cmd:
+				song_number=Song_off;
+				break;
+			
+			case Lamp1_on:
+				GPIOC->ODR |= 0x1ul;
+				break;
+			case Lamp1_off:
+				GPIOC->ODR &= ~0x1ul;
+				break;
+			
+			case Lamp2_on:
+				GPIOC->ODR |= 0x1ul<<1;
+				break;
+			case Lamp2_off:
+				GPIOC->ODR &= ~(0x1ul<<1);
+				break;
+			
+			case Lamp3_on:
+				GPIOC->ODR |= 0x1ul<<2;
+				break;
+			case Lamp3_off:
+				GPIOC->ODR &= ~(0x1ul<<2);
+				break;
+			
+			case Lamp4_on:
+				GPIOC->ODR |= 0x1ul<<3;
+				break;
+			case Lamp4_off:
+				GPIOC->ODR &= ~(0x1ul<<3);
+				break;
+			
+			case Lamp5_on:
+				GPIOB->ODR |= 0x1ul;
+				break;
+			case Lamp5_off:
+				GPIOB->ODR &= ~0x1ul;
+				break;
+		}
+	}
+  /* USER CODE END USART1_IRQn 0 */
+  /* USER CODE BEGIN USART1_IRQn 1 */
+
+  /* USER CODE END USART1_IRQn 1 */
 }
 
 /* USER CODE BEGIN 1 */

@@ -27,8 +27,50 @@ const uint8_t note_happy_song[]={5,5,6,5,1+7,7,0,5,5,6,5,2+7,1+7,5,5,5+7,3+7,1+7
 const uint16_t beat_happy_song[]={250,250,500,500,500,500,500,250,250,500,500,500,1000,
                             250,250,500,500,500,500,1500,500,250,250,500,500,500,1000};
 
+// sun day
+const uint8_t sun_day_song[] = {
+  3, 2, 1, 5,
+  3, 2, 1, 5,
+  3, 2, 1, 5,
+  1, 1, 7-7, 1,
+  3, 2, 1, 5,
+  3, 2, 1, 5,
+  3, 2, 1, 5,
+  1, 2, 3, 1
+};
+int beat_sun_day_song[] = {
+  250, 250, 250, 250,
+  250, 250, 250, 250,
+  250, 250, 250, 250,
+  250, 250, 250, 250,
+  250, 250, 250, 250,
+  250, 250, 250, 250,
+  250, 250, 250, 250,
+  250, 250, 500, 500
+};
 
+// Beatles - Let It Be (Chorus)
+int beatles_song[] = {
+  1+7, 7, 6, 5,
+  6, 5, 3, 1, 
+  1+7, 7, 6, 5,
+  3, 2, 1, 1,
+  1+7, 7, 6, 5,
+  6, 5, 3, 1,
+  3, 2, 2, 1,
+  1
+};
 
+int beat_beatles_song[] = {
+  500, 250, 250, 500,
+  250, 250, 500, 500,
+  500, 250, 250, 500,
+  250, 250, 500, 500,
+  500, 250, 250, 500,
+  250, 250, 500, 500,
+  500, 500, 500, 500,
+  500
+};
 
 void disable_buzzer(void)
 {
@@ -127,7 +169,45 @@ void playMelody(uint8_t song_num)
 				Delay_timer6(500);
 				disable_buzzer();
 				Delay_timer6(soundStop);
+				if(song_number != Song_4)
+					break;
 				enable_buzz();
+			}
+			break;
+		case Song_5:
+			printf("sun day tone.\n\r");
+			enable_buzz();
+			for(int i=0;i<sizeof(sun_day_song);i++){
+				toneValue = sun_day_song[i];
+				toneValue+=7;
+				select_tone(toneValue);
+				beatValue = beat_sun_day_song[i];
+				Delay_timer6(beatValue);
+				disable_buzzer();
+				Delay_timer6(soundStop);
+				if(song_number!=Song_5)
+					break;
+				enable_buzz();
+			}
+			break;
+		case Song_6:
+			enable_buzz();
+			for(int i=0;i<sizeof(beatles_song);i++){
+				toneValue = beatles_song[i];
+				if(toneValue==0){
+					disable_buzzer();
+					Delay_timer6(beatValue);
+					enable_buzz();
+				}else{
+					select_tone(toneValue);
+					beatValue = beat_beatles_song[i];
+					Delay_timer6(beatValue);
+					disable_buzzer();
+					Delay_timer6(soundStop);
+					if(song_number!=Song_6)
+						break;
+					enable_buzz();
+				}
 			}
 			break;
 		case Song_off:
