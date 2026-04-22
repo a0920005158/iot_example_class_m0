@@ -51,6 +51,7 @@ volatile uint8_t count_10sec=0;
 volatile uint32_t timer6_tick;
 volatile uint32_t timer7_tick;
 volatile uint8_t song_number = Song_off;
+char data_test[9]="m0 test\n\r";
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -232,11 +233,27 @@ void TIM7_IRQHandler(void)
 {
   /* USER CODE BEGIN TIM7_IRQn 0 */
 	count_10sec++;
+	char line1[5]="\n\rT:";
+	char line2[5]="\n\rH:";
+	
 	if(count_10sec == 100){
-		if(!getData_DHT22())
-			printf("DHT22 fail.\n\r");
-		if(!getData_DHT11())
+		if(getData_DHT11()){
+			sendString(line1);
+			sendString(tempString);
+			sendString(line2);
+			sendString(humString);
+		}else{
 			printf("DHT11 fail.\n\r");
+		}
+		
+
+//		if(!getData_DHT22())
+//			printf("DHT22 fail.\n\r");
+		
+//		if(!getData_DHT11())
+//			printf("DHT11 fail.\n\r");
+//		
+//		sendString(data_test);
 		count_10sec=0;
 	}
 	tim7_tick++;
@@ -328,5 +345,12 @@ void USART1_IRQHandler(void)
 }
 
 /* USER CODE BEGIN 1 */
-
+void sendString(char *data_ptr)
+{
+	while(*data_ptr){
+		if(USART1->ISR & (0x1ul<<7)) {
+			USART1->TDR = *(data_ptr++);
+		}
+	}
+}
 /* USER CODE END 1 */

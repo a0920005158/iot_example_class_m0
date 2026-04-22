@@ -125,6 +125,11 @@ bool getData_DHT22(void)
 		
 		printf("temperature = %0.2f \n\r",tempFinal);
 		printf("humidity = %0.2f \n\r",humFinal);
+		
+		sprintf(tempString,"%0.2f",tempFinal);
+		sprintf(humString,"%0.2f",humFinal);
+//		printf("temp string = %s\n\r",tempString);
+//		printf("hum string = %s\n\r",humString);
 	} else {
 		resultFlag = false;
 	}
@@ -248,6 +253,11 @@ bool getData_DHT11(void)
 		
 		printf("temperature = %0.2f \n\r",tempData/10.0);
 		printf("humidity = %0.2f \n\r",humData/10.0);
+		
+		sprintf(tempString,"%0.2f",tempData/10.0);
+		sprintf(humString,"%0.2f",humData/10.0);
+//		printf("temp string = %s\n\r",tempString);
+//		printf("hum string = %s\n\r",humString);
 	} else {
 		resultFlag = false;
 	}

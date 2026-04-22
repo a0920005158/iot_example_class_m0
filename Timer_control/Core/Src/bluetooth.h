@@ -22,3 +22,7 @@
 
 #define Lamp5_on 	'm'
 #define Lamp5_off 'n'
+
+void sendString(char *data_ptr);
+extern char humString[8];
+extern char tempString[8];
