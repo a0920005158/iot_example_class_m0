@@ -3,9 +3,9 @@
 <title>Static Call Graph - [Car_control\Car_control.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image Car_control\Car_control.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6220000: Last Updated: Thu Apr 23 14:16:55 2026
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6220000: Last Updated: Mon Apr 27 13:48:05 2026
 <BR><P>
-<H3>Maximum Stack Usage =        304 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
+<H3>Maximum Stack Usage =        320 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
 main &rArr; playMelody &rArr; __aeabi_dmul &rArr; _double_epilogue &rArr; __aeabi_llsl
 <P>
@@ -55,7 +55,7 @@ Function Pointers
  <LI><a href="#[e]">TSC_IRQHandler</a> from startup_stm32f072xb.o(.text) referenced from startup_stm32f072xb.o(RESET)
  <LI><a href="#[21]">USART1_IRQHandler</a> from stm32f0xx_it.o(.text.USART1_IRQHandler) referenced from startup_stm32f072xb.o(RESET)
  <LI><a href="#[22]">USART2_IRQHandler</a> from startup_stm32f072xb.o(.text) referenced from startup_stm32f072xb.o(RESET)
- <LI><a href="#[23]">USART3_4_IRQHandler</a> from startup_stm32f072xb.o(.text) referenced from startup_stm32f072xb.o(RESET)
+ <LI><a href="#[23]">USART3_4_IRQHandler</a> from stm32f0xx_it.o(.text.USART3_4_IRQHandler) referenced from startup_stm32f072xb.o(RESET)
  <LI><a href="#[25]">USB_IRQHandler</a> from startup_stm32f072xb.o(.text) referenced from startup_stm32f072xb.o(RESET)
  <LI><a href="#[6]">WWDG_IRQHandler</a> from startup_stm32f072xb.o(.text) referenced from startup_stm32f072xb.o(RESET)
  <LI><a href="#[28]">__main</a> from entry.o(.ARM.Collect$$$$00000000) referenced from startup_stm32f072xb.o(.text)
@@ -172,9 +172,6 @@ Global Symbols
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f072xb.o(RESET)
 </UL>
 <P><STRONG><a name="[22]"></a>USART2_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_stm32f072xb.o(.text))
-<BR>[Address Reference Count : 1]<UL><LI> startup_stm32f072xb.o(RESET)
-</UL>
-<P><STRONG><a name="[23]"></a>USART3_4_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_stm32f072xb.o(.text))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f072xb.o(RESET)
 </UL>
 <P><STRONG><a name="[25]"></a>USB_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_stm32f072xb.o(.text))
@@ -494,7 +491,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[26]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[4f]"></a>HAL_UART_MspInit</STRONG> (Thumb, 176 bytes, Stack size 40 bytes, stm32f0xx_hal_msp.o(.text.HAL_UART_MspInit))
+<P><STRONG><a name="[4f]"></a>HAL_UART_MspInit</STRONG> (Thumb, 248 bytes, Stack size 40 bytes, stm32f0xx_hal_msp.o(.text.HAL_UART_MspInit))
 <BR><BR>[Stack]<UL><LI>Max Depth = 104<LI>Call Chain = HAL_UART_MspInit &rArr; HAL_GPIO_Init
 </UL>
 <BR>[Calls]<UL><LI><a href="#[4a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_NVIC_EnableIRQ
@@ -537,7 +534,7 @@ Global Symbols
 <P><STRONG><a name="[17]"></a>TIM6_DAC_IRQHandler</STRONG> (Thumb, 20 bytes, Stack size 0 bytes, stm32f0xx_it.o(.text.TIM6_DAC_IRQHandler))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f072xb.o(RESET)
 </UL>
-<P><STRONG><a name="[18]"></a>TIM7_IRQHandler</STRONG> (Thumb, 180 bytes, Stack size 8 bytes, stm32f0xx_it.o(.text.TIM7_IRQHandler))
+<P><STRONG><a name="[18]"></a>TIM7_IRQHandler</STRONG> (Thumb, 184 bytes, Stack size 8 bytes, stm32f0xx_it.o(.text.TIM7_IRQHandler))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = TIM7_IRQHandler &rArr; car_direction &rArr; HAL_Delay
 </UL>
 <BR>[Calls]<UL><LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;car_direction
@@ -585,6 +582,14 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f072xb.o(RESET)
 </UL>
+<P><STRONG><a name="[23]"></a>USART3_4_IRQHandler</STRONG> (Thumb, 196 bytes, Stack size 8 bytes, stm32f0xx_it.o(.text.USART3_4_IRQHandler))
+<BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = USART3_4_IRQHandler &rArr; car_direction &rArr; HAL_Delay
+</UL>
+<BR>[Calls]<UL><LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;car_direction
+<LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> startup_stm32f072xb.o(RESET)
+</UL>
 <P><STRONG><a name="[54]"></a>car_direction</STRONG> (Thumb, 104 bytes, Stack size 16 bytes, car_direction.o(.text.car_direction))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = car_direction &rArr; HAL_Delay
 </UL>
@@ -592,7 +597,8 @@ Global Symbols
 <LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pwmLevel_ch4
 <LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pwmLevel_ch3
 </UL>
-<BR>[Called By]<UL><LI><a href="#[21]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART1_IRQHandler
+<BR>[Called By]<UL><LI><a href="#[23]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART3_4_IRQHandler
+<LI><a href="#[21]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART1_IRQHandler
 <LI><a href="#[18]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM7_IRQHandler
 <LI><a href="#[26]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
@@ -616,12 +622,12 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> printf2.o(i.__0printf$2)
 </UL>
-<P><STRONG><a name="[26]"></a>main</STRONG> (Thumb, 1044 bytes, Stack size 144 bytes, main.o(.text.main))
-<BR><BR>[Stack]<UL><LI>Max Depth = 304<LI>Call Chain = main &rArr; playMelody &rArr; __aeabi_dmul &rArr; _double_epilogue &rArr; __aeabi_llsl
+<P><STRONG><a name="[26]"></a>main</STRONG> (Thumb, 1160 bytes, Stack size 160 bytes, main.o(.text.main))
+<BR><BR>[Stack]<UL><LI>Max Depth = 320<LI>Call Chain = main &rArr; playMelody &rArr; __aeabi_dmul &rArr; _double_epilogue &rArr; __aeabi_llsl
 </UL>
-<BR>[Calls]<UL><LI><a href="#[48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_Base_Init
-<LI><a href="#[38]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_ADC_ConfigChannel
+<BR>[Calls]<UL><LI><a href="#[38]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_ADC_ConfigChannel
 <LI><a href="#[3a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_ADC_Init
+<LI><a href="#[48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_Base_Init
 <LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_MspPostInit
 <LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_PWM_ConfigChannel
 <LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIMEx_MasterConfigSynchronization
@@ -638,6 +644,7 @@ Global Symbols
 <LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;enable_car
 <LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;enablePWM_ch4
 <LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;enablePWM_ch3
+<LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 <LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> entry9a.o(.ARM.Collect$$$$0000000B)
@@ -675,7 +682,9 @@ Global Symbols
 <P><STRONG><a name="[57]"></a>__2printf</STRONG> (Thumb, 0 bytes, Stack size 24 bytes, printf2.o(i.__0printf$2))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = __2printf
 </UL>
-<BR>[Called By]<UL><LI><a href="#[21]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART1_IRQHandler
+<BR>[Called By]<UL><LI><a href="#[23]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART3_4_IRQHandler
+<LI><a href="#[21]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART1_IRQHandler
+<LI><a href="#[26]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 <LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;playMelody
 </UL>
 

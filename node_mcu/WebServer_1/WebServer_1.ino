@@ -1,12 +1,17 @@
 #include <ESP8266WiFi.h>
 #include <WiFiClient.h>
 #include <ESP8266WebServer.h>
+#include <SoftwareSerial.h>
 
 #include "home.h"
 #include "switch_6.h"
 
 const char* ssid = "thmrb305";
 const char* password = "thmrbthmrbthmrb";
+
+#define rxPin 4
+#define txPin 5
+SoftwareSerial mySerial = SoftwareSerial(rxPin,txPin);
 
 ESP8266WebServer server(80);
 
@@ -18,6 +23,10 @@ ESP8266WebServer server(80);
 
 void setup() {
   // put your setup code here, to run once:
+
+  pinMode(rxPin, INPUT);
+  pinMode(txPin, OUTPUT);
+  mySerial.begin(115200);
 
   Serial.begin(115200);
   pinMode(LED1, OUTPUT);
@@ -55,6 +64,10 @@ void setup() {
   server.on("/home",handleHome);
   server.on("/home/led",handleHomeLed);
   server.on("/home/login",handleLogin);
+  server.on("/home/song",handleSong);
+  server.on("/car",handleCar);
+  server.on("/car/dir",handleCarDir);
+  server.on("/car/dirget",handleCarDirGet);
 
   server.begin();
   Serial.println("Http server start");
@@ -63,6 +76,57 @@ void setup() {
 void loop() {
   // put your main code here, to run repeatedly:
   server.handleClient();
+}
+
+void handleCarDirGet(void)
+{
+  Serial.println("Car direction");
+  if(server.method()==HTTP_GET){
+    if(server.hasArg("dir")){
+      String carDir = server.arg("dir");
+      Serial.println(carDir[0]);
+      mySerial.write(carDir[0]);
+      server.send(200,"text/html","car dir ok :"+carDir);  
+    }
+  } else {
+    server.send(200,"text/html","Car control fail");  
+  } 
+}
+
+void handleCar(void)
+{
+  Serial.println("Car control");
+  String data = "Car control link ok";
+  server.send(200,"text/html",data);
+}
+
+void handleCarDir(void)
+{
+  Serial.println("Car direction");
+  if(server.method()==HTTP_POST){
+    if(server.hasArg("dir")){
+      String carDir = server.arg("dir");
+      Serial.println(carDir[0]);
+      mySerial.write(carDir[0]);
+      server.send(200,"text/html","car dir ok :"+carDir);  
+    }
+  } else {
+    server.send(200,"text/html","Car control fail");  
+  } 
+}
+
+void handleSong(void){
+  Serial.println("Song conttrol");
+  if(server.method()==HTTP_POST){
+    if(server.hasArg("song")){
+      String songNum = server.arg("song");
+      Serial.println(songNum[0]);
+      mySerial.write(songNum[0]);
+      server.send(200,"text/html","Song play ok :" + songNum);
+    }
+  }else{
+    server.send(200,"text/html","Song play fail");
+  }
 }
 
 void handleLogin(void){
@@ -95,6 +159,8 @@ void handleHomeLed(void){
     if(server.hasArg("led")){
       String ledNum = server.arg("led");
       String ledStatus = server.arg("state");
+      Serial.println(ledNum);
+      Serial.println(ledStatus);
       controlLED(ledNum,ledStatus);
       server.send(200,"text/html","LED OK: "+ledNum+" - "+ledStatus);
     }
@@ -143,10 +209,14 @@ void controlLED(String ledNum, String ledStatus) {
 void handleSwitch(){
   Serial.println("Switch control");
   if(server.method() == HTTP_POST){
-    String ledNum = server.arg("led");
-    String ledStatus = server.arg("state");
-    controlLED(ledNum,ledStatus);
-    server.send(200,"text/html","LED OK: "+ledNum+" - "+ledStatus);
+    if(server.hasArg("led")){
+      String ledNum = server.arg("led");
+      String ledStatus = server.arg("state");
+      Serial.println(ledNum);
+      Serial.println(ledStatus);
+      controlLED(ledNum,ledStatus);
+      server.send(200,"text/html","LED OK: "+ledNum+" - "+ledStatus);
+    }
   }else {
     Serial.println("show switch page");
     String data = Switch_page;
