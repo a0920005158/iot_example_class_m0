@@ -20,21 +20,13 @@ char sendData_write[] = "GET /update?api_key=26QSDSHKGWGWMXX4&field1=25&field2=6
 char sendData_1[] = "Host:api.thingspeak.com \r\n";
 char sendData_2[] = "Connection: close\r\n\r\n";
 
-//#include <DHT.h>
-
-#include <Ticker.h>
-
-//#define DHTPin D2
-//#define DHTType DHT11
-
-//DHT dht(DHTPin, DHTType);
-
-Ticker timer;
-volatile bool readFlag = false;
-
-void setFlag(){
-  readFlag = true;
-}
+const int http_port_ip = 8080;
+char serverName_ip[]="192.168.58.1";
+char sendData_write_ip[]="GET /data/?data=";
+char receiveData[20] = "T25H60";
+char sendEnd[]=" HTTP/1.1\r\n";
+char sendData_1_host[] = "Host:192.168.58.1 \r\n";
+char sendData_final[80];
 
 void setup() {
   // put your setup code here, to run once:
@@ -56,30 +48,39 @@ void setup() {
   Serial.print("IP address :");
   Serial.println(WiFi.localIP());
 
-  client_send();
-  timer.attach(5.0,setFlag);
+  sprintf(sendData_final,"%s%s%s",sendData_write_ip,receiveData,sendEnd);
+  Serial.println(sendData_final);
+  
+  if(client.connect(serverName_ip,http_port_ip)){
+    Serial.println("connect to ip");
+    client.print(sendData_final);
+    delay(100);
+    client.print(sendData_1_host);
+    delay(100);
+    client.println();
+  }
+
+  check_link();
+  
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-  if(readFlag){
-    readFlag = false;
-//    float t = dht.readTemperature();
-//    float h = dht.readHumidity();
-    int status = am2302.read();
-    if(status == 0){
-      float t = am2302.get_Temperature();
-      float h = am2302.get_Humidity();
 
-      if(isnan(h) || isnan(t)){
-        Serial.println("read failed");
-        return; 
-      }
-      Serial.println(t);
-      Serial.println(h);
-      Serial.println(); 
-    }
+}
+
+void check_link(){
+  int count = 0;
+  delay(3000);
+  count=client.available();
+  if(count>0){
+    for(int i=0;i<count;i++){
+      char c = client.read();
+      Serial.print(c);  
+    }  
   }
+
+  if(!client.connected())
+    client.stop();
 }
 
 void client_send(){

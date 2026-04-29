@@ -8,6 +8,8 @@
 
 const char* ssid = "thmrb305";
 const char* password = "thmrbthmrbthmrb";
+//const char* ssid = "JoanPixel";
+//const char* password = "122105029";
 
 #define rxPin 4
 #define txPin 5
@@ -109,6 +111,8 @@ void handleCarDir(void)
       Serial.println(carDir[0]);
       mySerial.write(carDir[0]);
       server.send(200,"text/html","car dir ok :"+carDir);  
+    }else{
+      server.send(200,"text/html","car cmd fail");
     }
   } else {
     server.send(200,"text/html","Car control fail");  
