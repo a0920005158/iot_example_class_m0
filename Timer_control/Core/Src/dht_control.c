@@ -37,6 +37,7 @@ bool getData_DHT22(void)
 	uint32_t dataValue, parityData, humData, tempData;
 	uint32_t checkData, checkParity;
 	float tempFinal, humFinal;
+	int tempFinal_int, humFinal_int;
 	
 	set_low();
 	HAL_Delay(5);
@@ -122,14 +123,18 @@ bool getData_DHT22(void)
 		humData = (dataValue >> 16) & 0xffff;
 		tempFinal = tempData/10.0;
 		humFinal = humData/10.0;
+		tempFinal_int = tempData/10.0;
+		humFinal_int = humData/10.0;
 		
 		printf("temperature = %0.2f \n\r",tempFinal);
 		printf("humidity = %0.2f \n\r",humFinal);
 		
-		sprintf(tempString,"%0.2f",tempFinal);
-		sprintf(humString,"%0.2f",humFinal);
-//		printf("temp string = %s\n\r",tempString);
-//		printf("hum string = %s\n\r",humString);
+//		sprintf(tempString,"%0.2f",tempFinal);
+//		sprintf(humString,"%0.2f",humFinal);
+			sprintf(tempString,"%d",tempFinal_int);
+			sprintf(humString,"%d",humFinal_int);
+			printf("temp string = %s\n\r",tempString);
+			printf("hum string = %s\n\r",humString);
 	} else {
 		resultFlag = false;
 	}

@@ -1,10 +1,14 @@
 #include <AM2302-Sensor.h>
-
 AM2302::AM2302_Sensor am2302(4);
+#include <SoftwareSerial.h>
 
 #include <ESP8266WiFi.h>
 #include <WiFiClient.h>
 
+#define rxPin 4
+#define txPin 5
+
+SoftwareSerial mySerial=SoftwareSerial(rxPin,txPin);
 
 const char* ssid = "thmrb305";
 const char* password = "thmrbthmrbthmrb";
@@ -23,13 +27,17 @@ char sendData_2[] = "Connection: close\r\n\r\n";
 const int http_port_ip = 8080;
 char serverName_ip[]="192.168.58.1";
 char sendData_write_ip[]="GET /data/?data=";
-char receiveData[20] = "T25H60";
+char receiveData[20] = "T:25H:60";
 char sendEnd[]=" HTTP/1.1\r\n";
 char sendData_1_host[] = "Host:192.168.58.1 \r\n";
 char sendData_final[80];
 
 void setup() {
   // put your setup code here, to run once:
+  pinMode(rxPin,INPUT);
+  pinMode(txPin,OUTPUT);
+  mySerial.begin(115200);
+  
   Serial.begin(115200);
   pinMode(LED1, OUTPUT);
   digitalWrite(LED1, HIGH);
@@ -65,7 +73,27 @@ void setup() {
 }
 
 void loop() {
+  int received_count = mySerial.available();
+  if(received_count > 6){
+    for(int i=0; i<received_count;i++){
+        receiveData[i]=mySerial.read();
+    }
 
+    Serial.println(receiveData);
+    sprintf(sendData_final,"%s%s%s",sendData_write_ip,receiveData,sendEnd);
+    Serial.println(sendData_final);
+
+    if(client.connect(serverName_ip,http_port_ip)){
+      Serial.println("connect to ip");
+      client.print(sendData_final);
+      delay(100);
+      client.print(sendData_1_host);
+      delay(100);
+      client.println();
+    }
+
+    check_link();
+  }
 }
 
 void check_link(){

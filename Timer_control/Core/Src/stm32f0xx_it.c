@@ -235,15 +235,21 @@ void TIM7_IRQHandler(void)
 	count_10sec++;
 	char line1[5]="\n\rT:";
 	char line2[5]="\n\rH:";
+	char t1[]="T:";
+	char h1[]="H:";
+	char dhtString[10];
 	
 	if(count_10sec == 100){
-		if(getData_DHT11()){
-			sendString(line1);
-			sendString(tempString);
-			sendString(line2);
-			sendString(humString);
+		if(getData_DHT22()){
+			sprintf(dhtString,"%s%s%s%s",t1,tempString,h1,humString);
+			printf("DHT22=%s\n\r",dhtString);
+			sendString_uart3(dhtString);
+//			sendString(line1);
+//			sendString(tempString);
+//			sendString(line2);
+//			sendString(humString);
 		}else{
-			printf("DHT11 fail.\n\r");
+			printf("DHT22 fail.\n\r");
 		}
 		
 
@@ -350,6 +356,15 @@ void sendString(char *data_ptr)
 	while(*data_ptr){
 		if(USART1->ISR & (0x1ul<<7)) {
 			USART1->TDR = *(data_ptr++);
+		}
+	}
+}
+
+void sendString_uart3(char *data_ptr)
+{
+	while(*data_ptr){
+		if(USART3->ISR & (0x1ul<<7)) {
+			USART3->TDR = *(data_ptr++);
 		}
 	}
 }

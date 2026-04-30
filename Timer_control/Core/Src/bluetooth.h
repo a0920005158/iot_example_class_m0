@@ -26,3 +26,5 @@
 void sendString(char *data_ptr);
 extern char humString[8];
 extern char tempString[8];
+
+void sendString_uart3(char *data_ptr);
