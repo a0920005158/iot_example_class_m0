@@ -1,6 +1,6 @@
 Configuration	Timer_control
 STM32CubeMX 	6.13.0
-Date	04/30/2026
+Date	05/27/2026
 MCU	STM32F072RBTx
 
 
@@ -102,7 +102,7 @@ SOFTWARE PROJECT
 
 Project Settings : 
 Project Name : Timer_control
-Project Folder : C:\Users\User\Desktop\M0\M0_project\Timer_control
+Project Folder : D:\side-project\iot_example_class_m0\Timer_control
 Toolchain / IDE : MDK-ARM V5.32
 Firmware Package Name and Version : STM32Cube FW_F0 V1.11.6
 

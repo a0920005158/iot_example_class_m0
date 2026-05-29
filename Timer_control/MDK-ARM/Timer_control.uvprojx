@@ -396,11 +396,6 @@
           <GroupName>Application/User/Core</GroupName>
           <Files>
             <File>
-              <FileName>usart_cubemx_2024.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\usart_cubemx_2024.c</FilePath>
-            </File>
-            <File>
               <FileName>dht_control.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Core\Src\dht_control.c</FilePath>
@@ -434,6 +429,11 @@
               <FileName>bluetooth.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\Core\Src\bluetooth.h</FilePath>
+            </File>
+            <File>
+              <FileName>usart_cubemx_2024.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>C:\Users\a0920\Desktop\usart_cubemx_2024.c</FilePath>
             </File>
             <File>
               <FileName>main.c</FileName>

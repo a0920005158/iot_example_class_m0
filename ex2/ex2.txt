@@ -1,6 +1,6 @@
 Configuration	ex2
 STM32CubeMX 	6.13.0
-Date	04/14/2026
+Date	05/27/2026
 MCU	STM32F072RBTx
 
 
@@ -64,7 +64,7 @@ SOFTWARE PROJECT
 
 Project Settings : 
 Project Name : ex2
-Project Folder : D:\Project\iot_example_class_m0\ex2
+Project Folder : D:\side-project\iot_example_class_m0\ex2
 Toolchain / IDE : MDK-ARM V5.32
 Firmware Package Name and Version : STM32Cube FW_F0 V1.11.6
 

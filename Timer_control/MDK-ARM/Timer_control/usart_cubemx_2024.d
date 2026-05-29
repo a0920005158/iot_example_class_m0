@@ -1,4 +1,5 @@
-timer_control/usart_cubemx_2024.o: ..\..\..\..\usart_cubemx_2024.c \
+timer_control/usart_cubemx_2024.o: \
+  C:\Users\a0920\Desktop\usart_cubemx_2024.c \
   ..\Drivers\CMSIS\Device\ST\STM32F0xx\Include\stm32f0xx.h \
   ..\Drivers\CMSIS\Device\ST\STM32F0xx\Include\stm32f072xb.h \
   ..\Drivers\CMSIS\Include\core_cm0.h \

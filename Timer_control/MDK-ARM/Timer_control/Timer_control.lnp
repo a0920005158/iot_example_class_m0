@@ -1,12 +1,12 @@
 --cpu Cortex-M0
 "timer_control\startup_stm32f072xb.o"
-"timer_control\usart_cubemx_2024.o"
 "timer_control\dht_control.o"
 "timer_control\melody_control.o"
 "timer_control\timer_control.o"
 "timer_control\main.o"
 "timer_control\stm32f0xx_it.o"
 "timer_control\stm32f0xx_hal_msp.o"
+"timer_control\usart_cubemx_2024.o"
 "timer_control\stm32f0xx_hal_tim.o"
 "timer_control\stm32f0xx_hal_tim_ex.o"
 "timer_control\stm32f0xx_hal_rcc.o"

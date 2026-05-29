@@ -1,6 +1,6 @@
 Configuration	ex_1
 STM32CubeMX 	6.13.0
-Date	04/13/2026
+Date	05/27/2026
 MCU	STM32F072RBTx
 
 
@@ -28,6 +28,7 @@ Pin Nb	PINs	FUNCTIONs	LABELs
 23	PA7	GPIO_EXTI7	key_2
 37	PC6	GPIO_Output	led_1
 38	PC7	GPIO_Output	led_2
+39	PC8	GPIO_Output	led_3
 40	PC9	GPIO_Output	led_4
 41	PA8	GPIO_EXTI8	key_3
 42	PA9	GPIO_EXTI9	key_4
@@ -56,6 +57,7 @@ Pin Nb	PINs	FUNCTIONs	LABELs
 23	PA7	GPIO_EXTI7	key_2
 37	PC6	GPIO_Output	led_1
 38	PC7	GPIO_Output	led_2
+39	PC8	GPIO_Output	led_3
 40	PC9	GPIO_Output	led_4
 41	PA8	GPIO_EXTI8	key_3
 42	PA9	GPIO_EXTI9	key_4
@@ -68,7 +70,7 @@ SOFTWARE PROJECT
 
 Project Settings : 
 Project Name : ex_1
-Project Folder : C:\Users\User\Desktop\M0\M0_project\ex_1
+Project Folder : D:\side-project\iot_example_class_m0\ex_1
 Toolchain / IDE : MDK-ARM V5.32
 Firmware Package Name and Version : STM32Cube FW_F0 V1.11.6
 

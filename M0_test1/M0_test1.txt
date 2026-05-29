@@ -1,6 +1,6 @@
 Configuration	M0_test1
 STM32CubeMX 	6.13.0
-Date	11/21/2025
+Date	05/27/2026
 MCU	STM32F072RBTx
 
 
@@ -56,7 +56,7 @@ SOFTWARE PROJECT
 
 Project Settings : 
 Project Name : M0_test1
-Project Folder : C:\Users\User\Desktop\M0\M0_project\M0_test1
+Project Folder : D:\side-project\iot_example_class_m0\M0_test1
 Toolchain / IDE : MDK-ARM V5.32
 Firmware Package Name and Version : STM32Cube FW_F0 V1.11.5
 
